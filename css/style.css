@@ -56,3 +56,108 @@ input[type=text]{width:100%;padding:12px;border:1px solid var(--line);border-rad
 .score-ring::before{content:"";position:absolute;inset:14px;border-radius:50%;background:#fff}.score-ring strong,.score-ring span{position:relative;z-index:1}.score-ring strong{font-size:42px;color:var(--navy)}.score-ring span{max-width:130px;color:var(--muted);font-weight:700}
 .result-columns{display:grid;grid-template-columns:1fr 1fr;gap:16px;text-align:left;margin:24px 0}.result-columns article{padding:20px;border:1px solid var(--line);border-radius:14px;background:#fff}.result-columns h3{margin-top:0;color:var(--navy)}.result-columns ul{padding-left:20px;line-height:1.8}
 @media(max-width:850px){.diagnostic-grid,.result-columns{grid-template-columns:1fr}}
+/* =========================================================
+   TOP BAR CORPORATIVA
+========================================================= */
+
+.topbar {
+  min-height: 110px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  padding: 18px 32px;
+  background: #ffffff;
+  border-bottom: 1px solid #dfe5ec;
+  box-sizing: border-box;
+}
+
+.brand-left,
+.brand-right {
+  display: flex;
+  align-items: center;
+}
+
+.brand-right {
+  gap: 32px;
+}
+
+.dym-logo {
+  display: block;
+  width: auto;
+  height: 78px;
+  object-fit: contain;
+}
+
+.iso-logo {
+  display: block;
+  width: auto;
+  height: 88px;
+  object-fit: contain;
+}
+
+.topbar .btn.secondary {
+  min-height: 48px;
+  padding: 12px 24px;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #172033;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.topbar .btn.secondary:hover {
+  transform: translateY(-1px);
+  border-color: #0b74c9;
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.12);
+}
+
+.topbar .btn.secondary:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+@media (max-width: 800px) {
+  .topbar {
+    min-height: auto;
+    align-items: flex-start;
+    padding: 16px 20px;
+  }
+
+  .brand-right {
+    gap: 16px;
+  }
+
+  .dym-logo {
+    height: 58px;
+  }
+
+  .iso-logo {
+    height: 66px;
+  }
+
+  .topbar .btn.secondary {
+    padding: 10px 16px;
+  }
+}
+
+@media (max-width: 560px) {
+  .topbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .brand-left {
+    justify-content: center;
+  }
+
+  .brand-right {
+    justify-content: space-between;
+  }
+}
