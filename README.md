@@ -37,3 +37,18 @@ En `js/course-data.js`, cada parte contiene:
 - El curso es una síntesis formativa; no reproduce el texto completo de ISO 19011:2018.
 - La norma oficial debe adquirirse y consultarse por separado.
 - El progreso se guarda en el navegador actual. Si se borra el almacenamiento del navegador, se reinicia.
+## Build 0.2 — Módulo 0: inducción y evaluación diagnóstica
+
+Este build agrega un módulo obligatorio previo al curso:
+
+- pantalla de inducción;
+- 5 preguntas de perfil;
+- 10 preguntas de conocimiento inicial;
+- un solo intento almacenado en el navegador;
+- clasificación del nivel inicial;
+- fortalezas y áreas recomendadas;
+- bloqueo de las Partes 1–5 hasta completar el diagnóstico;
+- progreso general actualizado a 6 módulos;
+- protección de sesión y cierre de sesión corregidos.
+
+El diagnóstico no exige calificación mínima y no afecta la constancia final.
