@@ -1,3 +1,7 @@
+alert("session-guard está funcionando");
+
+import { supabase } from "./supabase-client.js";
+
 import { supabase } from "./supabase-client.js";
 
 const LOGIN_URL = "./login.html";
