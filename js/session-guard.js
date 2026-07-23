@@ -13,29 +13,52 @@ async function validateSession() {
       error,
     } = await supabase.auth.getSession();
 
-    if (error) {
-      console.error("Error al consultar la sesión:", error);
-      goToLogin();
-      return;
-    }
-
-    if (!session) {
+    if (error || !session) {
       goToLogin();
     }
   } catch (error) {
-    console.error("Error inesperado al validar la sesión:", error);
+    console.error("Error al validar la sesión:", error);
     goToLogin();
   }
 }
 
-async function logout() {
-  const logoutButton = document.getElementById("logoutButton");
+function createLogoutButton() {
+  const existingButton = document.getElementById("logoutButton");
 
+  if (existingButton) {
+    return existingButton;
+  }
+
+  const button = document.createElement("button");
+
+  button.id = "logoutButton";
+  button.type = "button";
+  button.textContent = "Cerrar sesión";
+
+  Object.assign(button.style, {
+    position: "fixed",
+    top: "16px",
+    right: "16px",
+    zIndex: "9999",
+    padding: "10px 16px",
+    border: "1px solid #d1d5db",
+    borderRadius: "8px",
+    background: "#ffffff",
+    color: "#111827",
+    cursor: "pointer",
+    fontWeight: "600",
+    boxShadow: "0 4px 12px rgba(0,0,0,0.15)"
+  });
+
+  document.body.appendChild(button);
+
+  return button;
+}
+
+async function logout(button) {
   try {
-    if (logoutButton) {
-      logoutButton.disabled = true;
-      logoutButton.textContent = "Cerrando sesión...";
-    }
+    button.disabled = true;
+    button.textContent = "Cerrando sesión...";
 
     const { error } = await supabase.auth.signOut();
 
@@ -47,34 +70,23 @@ async function logout() {
   } catch (error) {
     console.error("Error al cerrar sesión:", error);
 
-    if (logoutButton) {
-      logoutButton.disabled = false;
-      logoutButton.textContent = "Cerrar sesión";
-    }
+    button.disabled = false;
+    button.textContent = "Cerrar sesión";
 
     alert("No fue posible cerrar la sesión.");
   }
 }
 
-function bindLogoutButton() {
-  const logoutButton = document.getElementById("logoutButton");
+document.addEventListener("DOMContentLoaded", async () => {
+  await validateSession();
 
-  if (!logoutButton) {
-    console.error(
-      'No se encontró el botón con id="logoutButton".'
-    );
-    return;
-  }
+  const logoutButton = createLogoutButton();
 
   logoutButton.addEventListener("click", async (event) => {
     event.preventDefault();
-    await logout();
+    event.stopPropagation();
+    await logout(logoutButton);
   });
-}
-
-document.addEventListener("DOMContentLoaded", async () => {
-  bindLogoutButton();
-  await validateSession();
 });
 
 supabase.auth.onAuthStateChange((event) => {
