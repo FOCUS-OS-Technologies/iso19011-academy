@@ -149,8 +149,10 @@ function completedCount() {
 function updateProgress() {
   const done = completedCount();
   const pct = Math.round((done / totalModules()) * 100);
+
   $('#progressFill').style.width = `${pct}%`;
-  $('#progressLabel').textContent = `${done} de ${totalModules()} módulos completados · ${pct}%`;
+  $('#progressLabel').textContent =
+    `${done} de ${totalModules()} partes completadas · ${pct}%`;
 }
 
 function buildNav() {
@@ -158,8 +160,8 @@ function buildNav() {
 
   const diagnosticButton = document.createElement('button');
   diagnosticButton.textContent = state.diagnostic.completed
-    ? '✓ Módulo 0: Inducción y diagnóstico'
-    : 'Módulo 0: Inducción y diagnóstico';
+    ? '✓ Parte 0: Inducción y diagnóstico'
+    : 'Parte 0: Inducción y diagnóstico';
   diagnosticButton.className = Number(state.current) === 0 ? 'active' : '';
   diagnosticButton.onclick = () => {
     state.current = 0;
@@ -175,7 +177,7 @@ function buildNav() {
     button.textContent = `Parte ${module.id}: ${module.title}`;
     button.className = Number(state.current) === module.id ? 'active' : '';
     button.disabled = !state.diagnostic.completed;
-    button.title = button.disabled ? 'Completa primero el Módulo 0' : '';
+    button.title = button.disabled ? 'Completa primero la Parte 0' : '';
     button.onclick = () => {
       if (!state.diagnostic.completed) return;
       state.current = module.id;
@@ -484,22 +486,22 @@ function escapeHtml(value) {
     .replaceAll("'", '&#039;');
 }
 
-$('#setName').onclick = () => {
-  const name = prompt('Nombre del participante:', state.name || '');
-  if (name !== null) {
-    state.name = name.trim();
-    save();
-  }
-};
+const resetButton = $('#reset');
 
-$('#reset').onclick = () => {
-  if (confirm('¿Borrar progreso, diagnóstico y calificaciones?')) {
+if (resetButton) {
+  resetButton.onclick = () => {
+    const confirmed = confirm(
+      '¿Deseas borrar el progreso, el diagnóstico y las calificaciones?'
+    );
+
+    if (!confirmed) {
+      return;
+    }
+
     localStorage.removeItem(STORAGE_KEY);
     location.reload();
-  }
-};
-
-$('#certificate').onclick = () => renderCertificate();
+  };
+}
 
 if (!state.diagnostic.completed) state.current = 0;
 buildNav();
