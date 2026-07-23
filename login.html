@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Acceso · Curso ISO 19011</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <main style="max-width:460px;margin:60px auto;padding:24px;">
+    <section class="lesson">
+      <h1>Curso ISO 19011:2018</h1>
+      <p>Inicia sesión para guardar tu avance y resultados.</p>
+
+      <form id="loginForm">
+        <label>
+          Correo electrónico
+          <input
+            id="loginEmail"
+            type="email"
+            required
+            autocomplete="email"
+            style="display:block;width:100%;padding:12px;margin:8px 0 18px;"
+          >
+        </label>
+
+        <label>
+          Contraseña
+          <input
+            id="loginPassword"
+            type="password"
+            required
+            minlength="6"
+            autocomplete="current-password"
+            style="display:block;width:100%;padding:12px;margin:8px 0 18px;"
+          >
+        </label>
+
+        <button class="btn" type="submit">Iniciar sesión</button>
+      </form>
+
+      <hr style="margin:28px 0;">
+
+      <h2>Crear cuenta</h2>
+
+      <form id="registerForm">
+        <label>
+          Nombre completo
+          <input
+            id="registerName"
+            type="text"
+            required
+            style="display:block;width:100%;padding:12px;margin:8px 0 18px;"
+          >
+        </label>
+
+        <label>
+          Correo electrónico
+          <input
+            id="registerEmail"
+            type="email"
+            required
+            autocomplete="email"
+            style="display:block;width:100%;padding:12px;margin:8px 0 18px;"
+          >
+        </label>
+
+        <label>
+          Contraseña
+          <input
+            id="registerPassword"
+            type="password"
+            required
+            minlength="6"
+            autocomplete="new-password"
+            style="display:block;width:100%;padding:12px;margin:8px 0 18px;"
+          >
+        </label>
+
+        <button class="btn secondary" type="submit">Crear cuenta</button>
+      </form>
+
+      <div id="authMessage" style="margin-top:22px;"></div>
+    </section>
+  </main>
+
+  <script type="module" src="js/auth.js"></script>
+</body>
+</html>
