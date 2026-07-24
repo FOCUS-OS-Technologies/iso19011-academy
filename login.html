@@ -3,88 +3,98 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Acceso · Curso ISO 19011</title>
-  <link rel="stylesheet" href="css/style.css">
+  <title>Acceso · Curso ISO 19011:2018</title>
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/auth.css">
 </head>
+<body class="auth-page">
+  <main class="auth-shell">
+    <section class="auth-card" aria-labelledby="authTitle">
+      <header class="auth-branding">
+        <img src="./assets/dym-logo.png" class="auth-logo auth-logo-dym" alt="DYM Stamping Solutions">
+        <span class="auth-brand-divider" aria-hidden="true"></span>
+        <img src="./assets/iso19011-logo.png" class="auth-logo auth-logo-iso" alt="ISO 19011">
+      </header>
 
-<body>
-  <main style="max-width:460px;margin:60px auto;padding:24px;">
-    <section class="lesson">
-      <h1>Curso ISO 19011:2018</h1>
-      <p>Inicia sesión para guardar tu avance y resultados.</p>
+      <div class="auth-intro">
+        <p class="auth-kicker">DYM Training</p>
+        <h1 id="authTitle">Curso ISO 19011:2018</h1>
+        <p>Accede con tu número de empleado para continuar tu capacitación y conservar tu avance.</p>
+      </div>
 
-      <form id="loginForm">
-        <label>
-          Correo electrónico
-          <input
-            id="loginEmail"
-            type="email"
-            required
-            autocomplete="email"
-            style="display:block;width:100%;padding:12px;margin:8px 0 18px;"
-          >
-        </label>
+      <div class="auth-tabs" role="tablist" aria-label="Opciones de acceso">
+        <button id="showLoginButton" class="auth-tab is-active" type="button"
+          role="tab" aria-selected="true" aria-controls="loginPanel">Iniciar sesión</button>
+        <button id="showRegisterButton" class="auth-tab" type="button"
+          role="tab" aria-selected="false" aria-controls="registerPanel">Crear cuenta</button>
+      </div>
 
-        <label>
-          Contraseña
-          <input
-            id="loginPassword"
-            type="password"
-            required
-            minlength="6"
-            autocomplete="current-password"
-            style="display:block;width:100%;padding:12px;margin:8px 0 18px;"
-          >
-        </label>
+      <section id="loginPanel" class="auth-panel" role="tabpanel" aria-labelledby="showLoginButton">
+        <form id="loginForm" novalidate>
+          <div class="auth-field">
+            <label for="employeeNumberLogin">Número de empleado</label>
+            <input id="employeeNumberLogin" name="employeeNumber" type="text"
+              autocomplete="username" maxlength="30" placeholder="Ejemplo: 4587" required>
+          </div>
 
-        <button class="btn" type="submit">Iniciar sesión</button>
-      </form>
+          <div class="auth-field">
+            <label for="loginPassword">Contraseña</label>
+            <input id="loginPassword" name="password" type="password"
+              autocomplete="current-password" minlength="8"
+              placeholder="Escribe tu contraseña" required>
+          </div>
 
-      <hr style="margin:28px 0;">
+          <button id="loginButton" class="auth-primary-button" type="submit">Iniciar sesión</button>
+        </form>
+      </section>
 
-      <h2>Crear cuenta</h2>
+      <section id="registerPanel" class="auth-panel" role="tabpanel"
+        aria-labelledby="showRegisterButton" hidden>
+        <form id="registerForm" novalidate>
+          <div class="auth-field">
+            <label for="registerName">Nombre completo</label>
+            <input id="registerName" name="fullName" type="text"
+              autocomplete="name" maxlength="120" placeholder="Nombre y apellidos" required>
+          </div>
 
-      <form id="registerForm">
-        <label>
-          Nombre completo
-          <input
-            id="registerName"
-            type="text"
-            required
-            style="display:block;width:100%;padding:12px;margin:8px 0 18px;"
-          >
-        </label>
+          <div class="auth-field">
+            <label for="employeeNumberRegister">Número de empleado</label>
+            <input id="employeeNumberRegister" name="employeeNumber" type="text"
+              autocomplete="username" maxlength="30" placeholder="Ejemplo: 4587" required>
+            <small>Será tu identificador de acceso y no podrá repetirse.</small>
+          </div>
 
-        <label>
-          Correo electrónico
-          <input
-            id="registerEmail"
-            type="email"
-            required
-            autocomplete="email"
-            style="display:block;width:100%;padding:12px;margin:8px 0 18px;"
-          >
-        </label>
+          <div class="auth-field">
+            <label for="registerPassword">Contraseña</label>
+            <input id="registerPassword" name="password" type="password"
+              autocomplete="new-password" minlength="8" maxlength="72"
+              placeholder="Mínimo 8 caracteres" required>
+          </div>
 
-        <label>
-          Contraseña
-          <input
-            id="registerPassword"
-            type="password"
-            required
-            minlength="6"
-            autocomplete="new-password"
-            style="display:block;width:100%;padding:12px;margin:8px 0 18px;"
-          >
-        </label>
+          <div class="auth-field">
+            <label for="confirmPassword">Confirmar contraseña</label>
+            <input id="confirmPassword" name="confirmPassword" type="password"
+              autocomplete="new-password" minlength="8" maxlength="72"
+              placeholder="Repite tu contraseña" required>
+          </div>
 
-        <button class="btn secondary" type="submit">Crear cuenta</button>
-      </form>
+          <label class="auth-checkbox">
+            <input id="acceptTerms" type="checkbox" required>
+            <span>Confirmo que los datos proporcionados son correctos y que esta cuenta será utilizada únicamente para capacitación.</span>
+          </label>
 
-      <div id="authMessage" style="margin-top:22px;"></div>
+          <button id="registerButton" class="auth-primary-button" type="submit">Crear cuenta</button>
+        </form>
+      </section>
+
+      <div id="authMessage" class="auth-message" role="status" aria-live="polite" hidden></div>
+
+      <footer class="auth-footer">
+        <span>Acceso exclusivo para personal autorizado.</span>
+      </footer>
     </section>
   </main>
 
-  <script type="module" src="js/auth.js"></script>
+  <script type="module" src="./js/auth.js"></script>
 </body>
 </html>
