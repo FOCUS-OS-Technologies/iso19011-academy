@@ -175,3 +175,12 @@ input[type=text]{width:100%;padding:12px;border:1px solid var(--line);border-rad
 .lesson:nth-of-type(even){background:linear-gradient(180deg,#fff,#fbfdff)}
 .hero{background:linear-gradient(145deg,#ffffff 0%,#f4f9fd 100%);border:1px solid #dce6ef}
 @media(max-width:650px){.module-hero-visual img,.lesson-visual img,.simulation-visual img{border-radius:12px}.lesson h3{font-size:21px}}
+
+
+/* Build 0.7 · Infographic Learning Edition */
+.module-infographic{margin:28px 0 34px;padding:12px;background:#fff;border-radius:26px;border:1px solid #d9e5ef;box-shadow:0 18px 48px rgba(18,61,102,.14);overflow:hidden}
+.module-infographic img{display:block;width:100%;height:auto;border-radius:18px}
+.module-infographic.part-one{border-top:8px solid #0b5ea8}.module-infographic.part-two{border-top:8px solid #19764d}.module-infographic.part-three{border-top:8px solid #c66a12}.module-infographic.part-four{border-top:8px solid #b83434}.module-infographic.part-five{border-top:8px solid #7143a3}
+.lesson-visual{display:none!important}
+.hero .eyebrow{letter-spacing:.12em}
+@media(max-width:700px){.module-infographic{margin:20px -4px 26px;padding:6px;border-radius:16px}.module-infographic img{border-radius:12px}}

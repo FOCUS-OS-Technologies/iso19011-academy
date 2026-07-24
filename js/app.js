@@ -46,32 +46,15 @@ const nav = $('#moduleNav');
 
 
 const moduleVisuals = {
-  1: `<figure class="module-hero-visual"><img src="./assets/course/part1-foundations.svg" alt="Flujo visual desde el criterio hasta la conclusión de auditoría"></figure>`,
-  2: `<figure class="module-hero-visual"><img src="./assets/course/part2-program.svg" alt="Programa de auditoría basado en objetivos y riesgos"></figure>`,
-  3: `<figure class="module-hero-visual"><img src="./assets/course/part3-execution.svg" alt="Métodos de ejecución de auditoría"></figure>`,
-  4: `<figure class="module-hero-visual"><img src="./assets/course/part4-findings.svg" alt="Construcción objetiva de hallazgos"></figure>`,
-  5: `<figure class="module-hero-visual"><img src="./assets/course/part5-competence.svg" alt="Ruta de desarrollo de competencia del auditor"></figure>`
+  1: `<figure class="module-infographic part-one"><img src="./assets/course/infographic-part1.svg" alt="Infografía completa de fundamentos de auditoría"></figure>`,
+  2: `<figure class="module-infographic part-two"><img src="./assets/course/infographic-part2.svg" alt="Infografía del programa y planificación de auditoría"></figure>`,
+  3: `<figure class="module-infographic part-three"><img src="./assets/course/infographic-part3.svg" alt="Infografía de preparación de auditoría"></figure>`,
+  4: `<figure class="module-infographic part-four"><img src="./assets/course/infographic-part4.svg" alt="Infografía de ejecución de auditoría en piso"></figure>`,
+  5: `<figure class="module-infographic part-five"><img src="./assets/course/infographic-part5.svg" alt="Infografía de hallazgos, seguimiento y mejora"></figure>`
 };
 
-const lessonVisuals = {
-  '1-2': ['./assets/course/audit-types.svg', 'Diferencia entre auditorías de primera, segunda y tercera parte'],
-  '1-3': ['./assets/course/audit-types.svg', 'Tipos de auditoría y su propósito'],
-  '1-4': ['./assets/course/principles-wheel.svg', 'Los siete principios que sostienen una auditoría confiable'],
-  '2-2': ['./assets/course/risk-matrix.svg', 'Priorización del programa según riesgo y desempeño'],
-  '2-4': ['./assets/course/audit-plan.svg', 'Elementos esenciales de un plan de auditoría'],
-  '3-2': ['./assets/course/evidence.svg', 'Fuentes complementarias de evidencia objetiva'],
-  '3-3': ['./assets/course/interview.svg', 'Secuencia de una entrevista eficaz'],
-  '3-4': ['./assets/course/traceability.svg', 'Ruta de trazabilidad en manufactura'],
-  '4-2': ['./assets/course/finding.svg', 'Estructura de un hallazgo claro y trazable'],
-  '4-5': ['./assets/course/closing.svg', 'Comunicación de resultados en la reunión de cierre'],
-  '5-4': ['./assets/course/simulation.svg', 'Aplicación integrada de conocimientos en el caso práctico']
-};
-
-function lessonVisual(moduleId, lessonIndex) {
-  const visual = lessonVisuals[`${moduleId}-${lessonIndex + 1}`];
-  if (!visual) return '';
-  return `<figure class="lesson-visual"><img src="${visual[0]}" alt="${visual[1]}" loading="lazy"><figcaption>${visual[1]}</figcaption></figure>`;
-}
+const lessonVisuals = {};
+function lessonVisual() { return ''; }
 
 const simulationQuestions = [
   {
