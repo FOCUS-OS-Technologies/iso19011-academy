@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520" role="img" aria-label="Auditoría simulada">
+<defs><linearGradient id="bg" x1="0" x2="1"><stop stop-color="#071f36"/><stop offset="1" stop-color="#0b5ea8"/></linearGradient><filter id="sh"><feDropShadow dx="0" dy="10" stdDeviation="12" flood-opacity=".18"/></filter></defs>
+<rect width="1200" height="520" rx="28" fill="url(#bg)"/><circle cx="1040" cy="80" r="180" fill="#fff" opacity=".05"/><circle cx="1100" cy="430" r="260" fill="#fff" opacity=".04"/>
+<text x="64" y="82" fill="#7fc4ff" font-family="Arial" font-size="22" font-weight="700" letter-spacing="3">FOCUS ACADEMY · ISO 19011</text>
+<text x="64" y="135" fill="#fff" font-family="Arial" font-size="42" font-weight="800">Auditoría simulada</text>
+<text x="64" y="174" fill="#d5e9fa" font-family="Arial" font-size="22">Analiza documentos, evidencia y decisiones del caso BRK-204</text>
+<g transform="translate(100 225)" filter="url(#sh)"><rect width="1000" height="205" rx="22" fill="#fff"/><g transform="translate(70 42)"><circle cx="65" cy="60" r="58" fill="#dcefff"/><path d="M45 62l16 16 32-40" fill="none" stroke="#0b5ea8" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/><rect x="175" y="12" width="700" height="25" rx="12" fill="#173a59" opacity=".9"/><rect x="175" y="62" width="610" height="18" rx="9" fill="#6f8799" opacity=".55"/><rect x="175" y="101" width="520" height="18" rx="9" fill="#6f8799" opacity=".35"/></g></g>
+</svg>

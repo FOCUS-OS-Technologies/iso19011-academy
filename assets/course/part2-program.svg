@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520" role="img" aria-label="Programa y planificación">
+<defs><linearGradient id="bg" x1="0" x2="1"><stop stop-color="#071f36"/><stop offset="1" stop-color="#0b5ea8"/></linearGradient><filter id="sh"><feDropShadow dx="0" dy="10" stdDeviation="12" flood-opacity=".18"/></filter></defs>
+<rect width="1200" height="520" rx="28" fill="url(#bg)"/><circle cx="1040" cy="80" r="180" fill="#fff" opacity=".05"/><circle cx="1100" cy="430" r="260" fill="#fff" opacity=".04"/>
+<text x="64" y="82" fill="#7fc4ff" font-family="Arial" font-size="22" font-weight="700" letter-spacing="3">FOCUS ACADEMY · ISO 19011</text>
+<text x="64" y="135" fill="#fff" font-family="Arial" font-size="42" font-weight="800">Programa y planificación</text>
+<text x="64" y="174" fill="#d5e9fa" font-family="Arial" font-size="22">Auditar lo importante, en el momento correcto</text>
+<g transform="translate(80 225)" filter="url(#sh)"><rect width="1040" height="210" rx="22" fill="#fff"/><path d="M125 150 C260 20 410 20 530 100 S800 190 930 55" fill="none" stroke="#0b5ea8" stroke-width="8"/><g fill="#fff" stroke="#0b5ea8" stroke-width="6"><circle cx="125" cy="150" r="25"/><circle cx="330" cy="54" r="25"/><circle cx="530" cy="100" r="25"/><circle cx="730" cy="160" r="25"/><circle cx="930" cy="55" r="25"/></g><g font-family="Arial" font-size="17" font-weight="700" fill="#173a59" text-anchor="middle"><text x="125" y="195">OBJETIVOS</text><text x="330" y="100">RIESGOS</text><text x="530" y="145">RECURSOS</text><text x="730" y="205">EJECUCIÓN</text><text x="930" y="100">MEJORA</text></g></g>
+</svg>

@@ -46,12 +46,32 @@ const nav = $('#moduleNav');
 
 
 const moduleVisuals = {
-  1: `<div class="learning-map"><div><span>01</span><b>Principios</b><small>Conducta y objetividad</small></div><i>→</i><div><span>02</span><b>Evidencia</b><small>Información verificable</small></div><i>→</i><div><span>03</span><b>Conclusión</b><small>Decisión sustentada</small></div></div>`,
-  2: `<div class="audit-cycle"><div>PLANEAR<br><small>objetivos y riesgos</small></div><div>HACER<br><small>programar y ejecutar</small></div><div>VERIFICAR<br><small>medir resultados</small></div><div>ACTUAR<br><small>mejorar el programa</small></div></div>`,
-  3: `<div class="evidence-chain"><span>Preguntar</span><span>Observar</span><span>Verificar</span><span>Registrar</span><span>Corroborar</span></div>`,
-  4: `<div class="finding-formula"><div><b>CRITERIO</b><small>Lo que debía cumplirse</small></div><strong>+</strong><div><b>EVIDENCIA</b><small>Lo que fue comprobado</small></div><strong>=</strong><div><b>HALLAZGO</b><small>Comparación objetiva</small></div></div>`,
-  5: `<div class="competence-path"><span>Formación</span><span>Observación</span><span>Práctica acompañada</span><span>Evaluación</span><span>Autorización</span></div>`
+  1: `<figure class="module-hero-visual"><img src="./assets/course/part1-foundations.svg" alt="Flujo visual desde el criterio hasta la conclusión de auditoría"></figure>`,
+  2: `<figure class="module-hero-visual"><img src="./assets/course/part2-program.svg" alt="Programa de auditoría basado en objetivos y riesgos"></figure>`,
+  3: `<figure class="module-hero-visual"><img src="./assets/course/part3-execution.svg" alt="Métodos de ejecución de auditoría"></figure>`,
+  4: `<figure class="module-hero-visual"><img src="./assets/course/part4-findings.svg" alt="Construcción objetiva de hallazgos"></figure>`,
+  5: `<figure class="module-hero-visual"><img src="./assets/course/part5-competence.svg" alt="Ruta de desarrollo de competencia del auditor"></figure>`
 };
+
+const lessonVisuals = {
+  '1-2': ['./assets/course/audit-types.svg', 'Diferencia entre auditorías de primera, segunda y tercera parte'],
+  '1-3': ['./assets/course/audit-types.svg', 'Tipos de auditoría y su propósito'],
+  '1-4': ['./assets/course/principles-wheel.svg', 'Los siete principios que sostienen una auditoría confiable'],
+  '2-2': ['./assets/course/risk-matrix.svg', 'Priorización del programa según riesgo y desempeño'],
+  '2-4': ['./assets/course/audit-plan.svg', 'Elementos esenciales de un plan de auditoría'],
+  '3-2': ['./assets/course/evidence.svg', 'Fuentes complementarias de evidencia objetiva'],
+  '3-3': ['./assets/course/interview.svg', 'Secuencia de una entrevista eficaz'],
+  '3-4': ['./assets/course/traceability.svg', 'Ruta de trazabilidad en manufactura'],
+  '4-2': ['./assets/course/finding.svg', 'Estructura de un hallazgo claro y trazable'],
+  '4-5': ['./assets/course/closing.svg', 'Comunicación de resultados en la reunión de cierre'],
+  '5-4': ['./assets/course/simulation.svg', 'Aplicación integrada de conocimientos en el caso práctico']
+};
+
+function lessonVisual(moduleId, lessonIndex) {
+  const visual = lessonVisuals[`${moduleId}-${lessonIndex + 1}`];
+  if (!visual) return '';
+  return `<figure class="lesson-visual"><img src="${visual[0]}" alt="${visual[1]}" loading="lazy"><figcaption>${visual[1]}</figcaption></figure>`;
+}
 
 const simulationQuestions = [
   {
@@ -436,8 +456,8 @@ function renderModule(id) {
     ${moduleVisuals[module.id] || ''}
   </section>`;
 
-  module.lessons.forEach((lesson) => {
-    html += `<section class="lesson"><h3>${lesson.title}</h3>${lesson.content}</section>`;
+  module.lessons.forEach((lesson, lessonIndex) => {
+    html += `<section class="lesson"><h3>${lesson.title}</h3>${lessonVisual(module.id, lessonIndex)}${lesson.content}</section>`;
   });
 
   html += renderQuiz(module);
@@ -469,7 +489,7 @@ function renderSimulation() {
   const completed = state.simulation.completed;
   const score = state.simulation.score;
   return `<section class="simulation" id="auditSimulation">
-    <div class="simulation-header">
+    <figure class="simulation-visual"><img src="./assets/course/simulation.svg" alt="Caso práctico de auditoría simulada al proceso de estampado"></figure><div class="simulation-header">
       <div><span class="simulation-label">EVALUACIÓN PRÁCTICA FINAL</span><h3>Auditoría simulada · Proceso de estampado</h3><p>Analiza el caso y toma decisiones como auditor. Debes completar las seis etapas antes de cerrar la Parte 5.</p></div>
       <div class="case-file"><b>CASO</b><span>AUD-EST-001</span><small>BRK-204 · Cliente Tier 1</small></div>
     </div>
