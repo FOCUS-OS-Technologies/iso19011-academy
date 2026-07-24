@@ -30,6 +30,10 @@ window.COURSE_DATA = [
         "title": "1.5 Roles y responsabilidades",
         "content": "\n                <ul>\n                  <li><strong>Cliente de la auditoría:</strong> solicita la auditoría y define necesidades.</li>\n                  <li><strong>Responsable del programa:</strong> establece objetivos, recursos y seguimiento.</li>\n                  <li><strong>Auditor líder:</strong> dirige el equipo y consolida conclusiones.</li>\n                  <li><strong>Auditor:</strong> obtiene y evalúa evidencia.</li>\n                  <li><strong>Experto técnico:</strong> aporta conocimiento especializado.</li>\n                  <li><strong>Auditado:</strong> proporciona acceso, información y evidencia.</li>\n                </ul>\n                <div class=\"callout tip\"><strong>Ejemplo DYM:</strong> el auditor no debe imponer la solución; debe documentar la condición, el criterio y la evidencia.</div>\n                "
       }
+      ,{
+        "title": "1.6 Mapa práctico: del requisito a la confianza",
+        "content": "<p>En una planta de manufactura, la auditoría conecta requisitos con decisiones operativas. El auditor no se limita a leer procedimientos: sigue el flujo real, contrasta lo definido con lo ejecutado y determina si los controles generan resultados confiables.</p><div class=\"visual-grid\"><article><b>Requisito</b><span>Norma, cliente, procedimiento o especificación</span></article><article><b>Aplicación</b><span>Cómo se transforma el requisito en controles de proceso</span></article><article><b>Evidencia</b><span>Registros, observación, entrevista y datos trazables</span></article><article><b>Confianza</b><span>Conclusión proporcional a la evidencia disponible</span></article></div><div class=\"callout tip\"><strong>Tip del auditor:</strong> cuando una respuesta parece correcta, pide que te muestren cómo se demuestra en la práctica.</div>"
+      }
     ],
     "quiz": [
       {
@@ -117,6 +121,10 @@ window.COURSE_DATA = [
         "title": "2.6 Competencia del equipo auditor",
         "content": "\n                <p>La competencia combina conocimiento, habilidades, experiencia y comportamiento personal. Debe evaluarse considerando el alcance de la auditoría.</p>\n                <ul><li>Normas y requisitos aplicables</li><li>Procesos y tecnología</li><li>Técnicas de auditoría</li><li>Comunicación y entrevista</li><li>Juicio profesional</li><li>Ética e imparcialidad</li></ul>\n                "
       }
+      ,{
+        "title": "2.7 Ejemplo visual de programa anual",
+        "content": "<p>Un programa efectivo distribuye la atención según riesgo, cambios y desempeño. No todos los procesos requieren la misma frecuencia ni la misma profundidad.</p><div class=\"risk-lanes\"><div><b>ALTO</b><span>Reclamos, características especiales, cambios mayores</span><em>Auditoría trimestral o focalizada</em></div><div><b>MEDIO</b><span>Desempeño variable, acciones abiertas, personal nuevo</span><em>Auditoría semestral</em></div><div><b>BAJO</b><span>Proceso estable, sin cambios y con resultados sostenidos</span><em>Auditoría anual</em></div></div><div class=\"callout key\"><strong>Decisión:</strong> la frecuencia debe poder explicarse con datos, no solamente con costumbre.</div>"
+      }
     ],
     "quiz": [
       {
@@ -197,6 +205,10 @@ window.COURSE_DATA = [
       {
         "title": "3.6 Comunicación durante la auditoría",
         "content": "\n                <p>El equipo auditor debe comunicar avances, riesgos importantes, cambios al plan y posibles hallazgos de forma oportuna.</p>\n                <p>Cuando exista un riesgo inmediato para calidad, seguridad o cumplimiento, debe informarse sin esperar a la reunión de cierre.</p>\n                "
+      }
+      ,{
+        "title": "3.7 Ruta de auditoría en manufactura",
+        "content": "<p>Una ruta útil inicia con el requisito del cliente y sigue una muestra hacia atrás y hacia adelante. Esto permite comprobar la conexión entre pedido, material, parámetros, medición, liberación y embarque.</p><div class=\"shopfloor-route\"><span>Pedido</span><span>Plano</span><span>Material</span><span>Máquina</span><span>Parámetros</span><span>Medición</span><span>Embarque</span></div><div class=\"callout warning\"><strong>Error común:</strong> permanecer en sala de juntas y aceptar presentaciones como sustituto de evidencia en piso.</div>"
       }
     ],
     "quiz": [
@@ -279,6 +291,10 @@ window.COURSE_DATA = [
         "title": "4.6 Seguimiento y eficacia",
         "content": "\n                <p>El seguimiento puede incluir revisión documental, verificación in situ o una auditoría posterior.</p>\n                <p>Debe diferenciarse entre:</p>\n                <ul><li><strong>Corrección:</strong> elimina la condición detectada.</li><li><strong>Acción correctiva:</strong> elimina la causa para evitar recurrencia.</li><li><strong>Verificación de eficacia:</strong> demuestra que la acción funciona y se sostiene.</li></ul>\n                "
       }
+      ,{
+        "title": "4.7 Anatomía de un hallazgo defendible",
+        "content": "<p>La redacción debe permitir que una persona que no estuvo presente comprenda qué se exigía, qué se verificó y por qué existe una diferencia.</p><div class=\"finding-example\"><p><b>Criterio:</b> el Plan de Control requiere aplicar el plan de reacción cuando una característica especial pierde capacidad.</p><p><b>Evidencia:</b> el registro SPC del turno 2 mostró Cpk 0.82; no se encontró evidencia de contención ni evaluación del lote producido.</p><p><b>Declaración:</b> no se implementó el plan de reacción definido ante la pérdida de capacidad del proceso.</p></div><div class=\"callout tip\"><strong>Prueba de calidad:</strong> elimina nombres, culpas y soluciones; conserva requisito, evidencia y declaración de incumplimiento.</div>"
+      }
     ],
     "quiz": [
       {
@@ -359,6 +375,10 @@ window.COURSE_DATA = [
       {
         "title": "5.6 Cierre del curso",
         "content": "\n                <p>Una auditoría eficaz combina método, competencia, independencia y evidencia. Su valor no se mide por la cantidad de hallazgos, sino por la confianza que genera y la calidad de las decisiones que permite.</p>\n                <div class=\"callout key\"><strong>Principio final:</strong> auditar es comprender cómo funciona el sistema y demostrar, con evidencia, si logra sus resultados previstos.</div>\n                "
+      }
+      ,{
+        "title": "5.7 Preparación para la evaluación práctica",
+        "content": "<p>La actividad final integra planeación, revisión documental, obtención de evidencia, juicio, redacción y seguimiento. No busca memorizar cláusulas, sino aplicar una secuencia lógica de auditoría.</p><div class=\"simulation-prep\"><span>1. Define propósito</span><span>2. Sigue evidencia</span><span>3. Corrobora</span><span>4. Evalúa riesgo</span><span>5. Redacta con precisión</span><span>6. Verifica eficacia</span></div><div class=\"callout key\"><strong>Antes de responder:</strong> distingue siempre entre lo que sabes, lo que te dijeron y lo que puedes demostrar.</div>"
       }
     ],
     "quiz": [

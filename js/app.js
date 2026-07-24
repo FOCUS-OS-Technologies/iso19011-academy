@@ -6,6 +6,7 @@ const defaultState = {
   scores: {},
   current: 0,
   name: '',
+  simulation: { completed: false, score: null, answers: {}, completedAt: null },
   diagnostic: {
     started: false,
     completed: false,
@@ -26,6 +27,7 @@ function loadState() {
       ...saved,
       completed: saved.completed || {},
       scores: saved.scores || {},
+      simulation: { ...defaultState.simulation, ...(saved.simulation || {}) },
       diagnostic: {
         ...defaultState.diagnostic,
         ...(saved.diagnostic || {})
@@ -41,6 +43,58 @@ let state = loadState();
 const $ = (selector) => document.querySelector(selector);
 const main = $('#content');
 const nav = $('#moduleNav');
+
+
+const moduleVisuals = {
+  1: `<div class="learning-map"><div><span>01</span><b>Principios</b><small>Conducta y objetividad</small></div><i>→</i><div><span>02</span><b>Evidencia</b><small>Información verificable</small></div><i>→</i><div><span>03</span><b>Conclusión</b><small>Decisión sustentada</small></div></div>`,
+  2: `<div class="audit-cycle"><div>PLANEAR<br><small>objetivos y riesgos</small></div><div>HACER<br><small>programar y ejecutar</small></div><div>VERIFICAR<br><small>medir resultados</small></div><div>ACTUAR<br><small>mejorar el programa</small></div></div>`,
+  3: `<div class="evidence-chain"><span>Preguntar</span><span>Observar</span><span>Verificar</span><span>Registrar</span><span>Corroborar</span></div>`,
+  4: `<div class="finding-formula"><div><b>CRITERIO</b><small>Lo que debía cumplirse</small></div><strong>+</strong><div><b>EVIDENCIA</b><small>Lo que fue comprobado</small></div><strong>=</strong><div><b>HALLAZGO</b><small>Comparación objetiva</small></div></div>`,
+  5: `<div class="competence-path"><span>Formación</span><span>Observación</span><span>Práctica acompañada</span><span>Evaluación</span><span>Autorización</span></div>`
+};
+
+const simulationQuestions = [
+  {
+    title: '1. Planeación de la auditoría',
+    text: 'Se auditará el proceso de estampado del número de parte BRK-204. El cliente reportó una dimensión fuera de especificación. ¿Cuál es el objetivo mejor formulado?',
+    options: [
+      'Encontrar al responsable del defecto',
+      'Evaluar si los controles del proceso de estampado aseguran el cumplimiento de requisitos dimensionales y de reacción',
+      'Revisar todos los procesos de la empresa',
+      'Confirmar que el producto siempre sale bien'
+    ], answer: 1, area: 'Planeación'
+  },
+  {
+    title: '2. Revisión documental',
+    text: 'El plano vigente es revisión F, pero la instrucción de inspección disponible en la prensa hace referencia a revisión D. ¿Cómo debe tratarse?',
+    options: ['Conforme', 'Observación sin evidencia', 'No conformidad por uso de información documentada obsoleta', 'No aplica'], answer: 2, area: 'Revisión documental'
+  },
+  {
+    title: '3. Evidencia en piso',
+    text: 'El calibrador usado para liberar la primera pieza no tiene identificación visible. El supervisor afirma que está calibrado, pero no localiza el registro. ¿Qué debe hacer el auditor?',
+    options: ['Aceptar la explicación', 'Declarar de inmediato una no conformidad mayor', 'Solicitar evidencia trazable y corroborar el estado del equipo antes de concluir', 'Ignorar el tema porque la pieza ya fue liberada'], answer: 2, area: 'Obtención de evidencia'
+  },
+  {
+    title: '4. Reacción ante proceso fuera de control',
+    text: 'El registro SPC muestra Cpk 0.82 en una característica especial. Se fabricaron 8,500 piezas y no existe evidencia de contención ni escalamiento. ¿Cuál es la respuesta más adecuada?',
+    options: ['Continuar porque existe inspección final', 'Comunicar el riesgo de inmediato, ampliar la evidencia y verificar el plan de reacción', 'Esperar a la reunión de cierre', 'Cambiar el límite de control'], answer: 1, area: 'Juicio del auditor'
+  },
+  {
+    title: '5. Redacción del hallazgo',
+    text: '¿Cuál redacción es más sólida?',
+    options: [
+      'El operador trabaja mal y debe ser reentrenado',
+      'Se recomienda mejorar el control del proceso',
+      'El Plan de Control PC-BRK-204 rev. F requiere aplicar el plan de reacción ante pérdida de capacidad; en los registros del turno 2 del 23/07 se observó Cpk 0.82 sin evidencia de contención, escalamiento ni evaluación de las 8,500 piezas producidas',
+      'La gerencia no está comprometida'
+    ], answer: 2, area: 'Redacción'
+  },
+  {
+    title: '6. Seguimiento',
+    text: 'La organización ajustó el troquel y reinspeccionó el lote. ¿Qué falta para demostrar eficacia?',
+    options: ['Nada; la corrección es suficiente', 'Verificar que la causa fue eliminada y que el desempeño se mantiene sin recurrencia', 'Cerrar por cumplimiento de fecha', 'Emitir otra observación'], answer: 1, area: 'Seguimiento'
+  }
+];
 
 const diagnosticProfileQuestions = [
   {
@@ -379,6 +433,7 @@ function renderModule(id) {
     <h2>${module.title}</h2>
     <h4>Objetivos de aprendizaje</h4>
     <ul class="objectives">${module.objectives.map((objective) => `<li>${objective}</li>`).join('')}</ul>
+    ${moduleVisuals[module.id] || ''}
   </section>`;
 
   module.lessons.forEach((lesson) => {
@@ -386,6 +441,7 @@ function renderModule(id) {
   });
 
   html += renderQuiz(module);
+  if (module.id === 5) html += renderSimulation();
   html += `<div class="module-footer">
     <button class="btn secondary" onclick="goModule(${module.id - 1})">← ${module.id === 1 ? 'Diagnóstico' : 'Parte anterior'}</button>
     <button class="btn" onclick="markComplete(${module.id})">Marcar parte como completada</button>
@@ -407,6 +463,50 @@ function renderQuiz(module) {
   <button class="btn" onclick="gradeQuiz(${module.id})">Calificar autoevaluación</button>
   <div id="quizResult" class="callout key hidden"></div></section>`;
 }
+
+
+function renderSimulation() {
+  const completed = state.simulation.completed;
+  const score = state.simulation.score;
+  return `<section class="simulation" id="auditSimulation">
+    <div class="simulation-header">
+      <div><span class="simulation-label">EVALUACIÓN PRÁCTICA FINAL</span><h3>Auditoría simulada · Proceso de estampado</h3><p>Analiza el caso y toma decisiones como auditor. Debes completar las seis etapas antes de cerrar la Parte 5.</p></div>
+      <div class="case-file"><b>CASO</b><span>AUD-EST-001</span><small>BRK-204 · Cliente Tier 1</small></div>
+    </div>
+    <div class="case-summary">
+      <article><b>Situación</b><p>Reclamo dimensional del cliente y pérdida de capacidad en una característica especial.</p></article>
+      <article><b>Documentos</b><p>Plano rev. F, Plan de Control rev. F, instrucción rev. D, SPC y registros de liberación.</p></article>
+      <article><b>Alcance</b><p>Estampado, liberación de primera pieza, control de medición y reacción ante desviaciones.</p></article>
+    </div>
+    ${simulationQuestions.map((q, index) => `<div class="simulation-step"><div class="step-number">${index + 1}</div><div class="step-content"><h4>${q.title}</h4><p>${q.text}</p>${q.options.map((o, oi) => `<label><input type="radio" name="sim${index}" value="${oi}" ${state.simulation.answers[index] === oi ? 'checked' : ''}> ${o}</label>`).join('')}<div class="feedback" id="simfb${index}"></div></div></div>`).join('')}
+    <button class="btn" onclick="gradeSimulation()">Evaluar auditoría simulada</button>
+    <div id="simulationResult" class="simulation-result ${completed ? '' : 'hidden'}">${completed ? simulationResultHtml(score) : ''}</div>
+  </section>`;
+}
+
+function simulationResultHtml(score) {
+  const level = score >= 85 ? 'Competencia sólida' : score >= 70 ? 'Competencia en desarrollo' : 'Requiere reforzamiento';
+  return `<h3>Resultado de la actividad</h3><div class="simulation-score"><strong>${score}%</strong><span>${level}</span></div><p>${score >= 70 ? 'La actividad práctica fue completada. Revisa la retroalimentación de cada etapa para consolidar tu criterio de auditoría.' : 'Repasa las Partes 2, 3 y 4 y vuelve a analizar el caso antes de cerrar el curso.'}</p>`;
+}
+
+window.gradeSimulation = function gradeSimulation() {
+  let correct = 0;
+  let missing = 0;
+  const answers = {};
+  simulationQuestions.forEach((q, index) => {
+    const selected = document.querySelector(`input[name=sim${index}]:checked`);
+    const fb = document.querySelector(`#simfb${index}`);
+    if (!selected) { missing += 1; fb.textContent = 'Selecciona una respuesta.'; fb.className = 'feedback bad'; return; }
+    const value = Number(selected.value); answers[index] = value;
+    if (value === q.answer) { correct += 1; fb.textContent = `Correcto · ${q.area}.`; fb.className = 'feedback ok'; }
+    else { fb.textContent = `Revisa tu decisión · ${q.area}. La mejor respuesta debe sustentarse en criterio, evidencia y riesgo.`; fb.className = 'feedback bad'; }
+  });
+  if (missing) return;
+  const score = Math.round(correct / simulationQuestions.length * 100);
+  state.simulation = { completed: true, score, answers, completedAt: new Date().toISOString() };
+  save();
+  const result = document.querySelector('#simulationResult'); result.classList.remove('hidden'); result.innerHTML = simulationResultHtml(score); result.scrollIntoView({behavior:'smooth', block:'center'});
+};
 
 window.gradeQuiz = function gradeQuiz(id) {
   const module = data.find((item) => item.id === id);
@@ -440,6 +540,7 @@ window.gradeQuiz = function gradeQuiz(id) {
 };
 
 window.markComplete = function markComplete(id) {
+  if (id === 5 && !state.simulation.completed) { alert('Completa primero la auditoría simulada de la Parte 5.'); document.querySelector('#auditSimulation')?.scrollIntoView({behavior:'smooth'}); return; }
   state.completed[id] = true;
   save();
   alert(`Parte ${id} marcada como completada.`);
